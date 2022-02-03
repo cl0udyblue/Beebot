@@ -1,14 +1,15 @@
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-const { token } = require('./config.json');
+const { token, clientId, guildId } = require('./config.json');
+const { config } = require('./config.json')
 const fs = require('fs');
 
 const commands = [];
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 // Place your client and guild ids here
-const clientId = '917288138156683285';
-const guildId = '907093191067586580';
+// const clientId = config.clientId
+// const guildId = config.guildId
 
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
