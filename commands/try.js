@@ -31,7 +31,7 @@ module.exports = {
                         o.setRequired(true)
                         .setName('reflexive')
                         .setDescription('e.g. "themself"')),
-          async execute (interaction) {
+    async execute(interaction, client) {
             let string = interaction.options.getString('name')
             string = string.toLowerCase()
             const newString = string.split('')

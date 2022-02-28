@@ -8,7 +8,7 @@ module.exports = {
           o.setRequired(true)
           .setName('question')
           .setDescription(`Ask a question!`)),
-    async execute(interaction) {
+    async execute(interaction, client) {
         let string = interaction.options.getString('question')
             string = string.toLowerCase()
             const newString = string.split('')

@@ -4,7 +4,10 @@ module.exports = {
 		.setName('ban')
 		.setDescription('Ban a user.')
 		.addUserOption(option => option.setRequired(true).setName('user').setDescription('Member youd like to ban')),
-	async execute(interaction) {
+	async execute(interaction, client) {
+
+		if (!interaction.member.permissions.has('BAN_MEMBERS')) return interaction.reply({content:"You can't use this command.",  ephemereal: false })
+
 		const target = interaction.guild.members.cache.get(interaction.options.getUser('user').id) || await interaction.guild.members.fetch(interaction.options.getUser('user').id);
 
 		if (!target) return interaction.reply('Target not found')

@@ -5,7 +5,7 @@ module.exports = {
 		.setName('purge')
 		.setDescription('Purge up to 99 messages.')
 		.addIntegerOption(option => option.setRequired(true).setName('amount').setDescription('Number of messages to purge')),
-	async execute(interaction) {
+    async execute(interaction, client) {
 		const amount = interaction.options.getInteger('amount');
 
 		if (amount <= 1 || amount > 100) {
