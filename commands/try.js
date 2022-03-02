@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageEmbed } = require('discord.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('try')
@@ -32,24 +33,10 @@ module.exports = {
                         .setName('reflexive')
                         .setDescription('e.g. "themself"')),
     async execute(interaction, client) {
-            let string = interaction.options.getString('name')
-            string = string.toLowerCase()
-            const newString = string.split('')
-            newString[0] = newString[0].toLocaleUpperCase()
-            string = newString.join('')
-    
-            const name = interaction.options.getString('name')
-            const object = interaction.options.getString('object')
-            const subject = interaction.options.getString('subject')
-            const pd = interaction.options.getString('possessivedeterminer')
-            const pp = interaction.options.getString('possessivepronoun')
-            const ref = interaction.options.getString('reflexive')
-
-            await interaction.reply(`Have you met ${name}? 
-            • I think ${object} is very nice
-            • I asked ${subject} if I could borrow ${pd} pencil
-            • ${object} told me that the house is ${pp}
-            • ${object} said ${object} would rather do it ${ref}`)
+           await interaction.reply({ embeds:[
+              new MessageEmbed()
+              .setDescription(`**Trying Pronouns** has moved to Pronoun Bot! Invite Pronoun Bot now for all your pronoun needs **[here](https://top.gg/bot/917522366710550648)**!`)
+           ]})
             }
             
 	};
