@@ -14,7 +14,20 @@ for (const file of commandFiles) {
 }
 
 client.once('ready', () => {
-	console.log('Ready!');
+	function presence() {
+        let status = ['froggie.cc - /help', 'Fuck Putin', 'Trans rights']
+        let rstatus = Math.floor(Math.random() * status.length);
+        client.user.setPresence({
+			activities:
+			[{
+				name: `${status[rstatus]}`,
+				type: `PLAYING`
+			}],
+            status: "online",
+        });
+    }
+    console.log(`${client.user.tag} is ready to serve!`);
+    setInterval(presence, 15000)
 });
 
 client.on('interactionCreate', async interaction => {
