@@ -27,7 +27,7 @@ client.once('ready', () => {
         });
     }
     console.log(`${client.user.tag} is ready to serve!`);
-    setInterval(presence, 15000)
+    setInterval(presence, 100000)
 });
 
 client.on('interactionCreate', async interaction => {

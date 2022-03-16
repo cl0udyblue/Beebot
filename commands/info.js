@@ -15,7 +15,6 @@ module.exports = {
 
     let member = interaction.options.getMember('user')
     let user = interaction.options.getUser('user')
-
     //TIMESTAMPS
 
 
@@ -23,11 +22,16 @@ module.exports = {
     stamp = `<t:${stamp}:R>`;
     let stamp2 = Math.floor(user.createdTimestamp / 1000)
     stamp2 = `<t:${stamp2}>`;
+    await user.fetch(true)
 
-
-
+    let color = user.hexAccentColor
+    let colorurl = user.hexAccentColor.replace("#", "")
+    colorurl = `https://www.color-hex.com/color/${colorurl}`
+    
+    
+    console.log(color)
+    
     //BADGES
-
 
     const flagEmojis = {
         'HOUSE_BALANCE': '<:BadgeBalance:938876196593225779>',
@@ -95,18 +99,19 @@ module.exports = {
                 .setTitle(`Info on ${user.tag}.`)
                 .setThumbnail(`${user.displayAvatarURL({ size: 4096, dynamic: true, format: 'png' })}`)
                 .setDescription(`**Mention**: <@${user.id}>
-                **User ID**: \`${member.id}\`
-                **Pronouns**: ${pronounMap[pronouns.pronouns]}
-                **Badges**: ${user.flags.toArray().map(f => flagEmojis[f])}
-                **Date created**: ${stamp2}
-                **Date joined**: ${joinstamp}
+**User ID**: \`${member.id}\`
+**Pronouns**: ${pronounMap[pronouns.pronouns]}
+**Badges**: ${user.flags.toArray().map(f => flagEmojis[f])}
+**Date created**: ${stamp2}
+**Date joined**: ${joinstamp}
+**Accent Colour**: [${color}](${colorurl})
+**Roles**:
+${roles.join(" ")}
 
-                **Roles**:
-                ${roles.join(" ")}
-
-                **Permissions**:
-                \`ADMINISTRATOR\`
-                `)] })}
+**Permissions**:
+\`ADMINISTRATOR\`
+`.replace(/\t/g, ''))
+                ] })}
 
         else if(!member.permissions.has('ADMINISTRATOR')) {
             await interaction.reply({
@@ -115,17 +120,18 @@ module.exports = {
                     .setTitle(`Info on ${user.tag}.`)
                     .setThumbnail(`${user.displayAvatarURL({ size: 4096, dynamic: true, format: 'png' })}`)
                     .setDescription(`**Mention**: <@${user.id}>
-                    **User ID**: \`${member.id}\`
-                    **Pronouns**: ${pronounMap[pronouns.pronouns]}
-                    **Date created**: ${stamp2}
-                    **Date joined**: ${joinstamp}
+**User ID**: \`${member.id}\`
+**Pronouns**: ${pronounMap[pronouns.pronouns]}
+**Date created**: ${stamp2}
+**Date joined**: ${joinstamp}
+**Accent Colour**: [${color}](${colorurl})
+
+**Roles**:
+${roles.join(" ")}
     
-                    **Roles**:
-                    ${roles.join(" ")}
-    
-                    **Permissions**:
-                    \`${perms.join("`, `")}\`
-                    `)] })
+**Permissions**:
+\`${perms.join("`, `")}\`
+`.replace(/\t/g, ''))] })
         }
     }
     
@@ -136,11 +142,12 @@ module.exports = {
                 .setTitle(`Info on ${user.tag}.`)
                 .setThumbnail(`${user.displayAvatarURL({ size: 4096, dynamic: true, format: 'png' })}`)
                 .setDescription(`**Mention**: <@${user.id}>
-                **User ID**: \`${user.id}\`
-                **Pronouns**: ${pronounMap[pronouns.pronouns]}
-                **Date created**: ${stamp2}
+**User ID**: \`${user.id}\`
+**Pronouns**: ${pronounMap[pronouns.pronouns]}
+**Date created**: ${stamp2}
+**Accent Colour**: [${color}](${colorurl})
 
-                `)] })
+`.replace(/\t/g, ''))] })
    }
   }
 };
